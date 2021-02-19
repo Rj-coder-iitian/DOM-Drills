@@ -67,12 +67,18 @@ window.addEventListener('DOMContentLoaded', function () {
     var listNo = 1;
 
     function listIncre(e) {
-        let listitem = document.createElement('LI');
-        let listText = document.createTextNode("This is list item "+listNo);
+        // Can we create a list item without creating an unordered list? YES! 
+        var li = document.createElement("li");
+        var liText = document.createTextNode("This is list item " + listNo);
+        li.appendChild(liText);
+        li.addEventListener("click", function(){
+            li.style.color = randomColor();
+        });
+        li.addEventListener("dblclick", function() {
+            document.body.removeChild(li);
+        });
+        document.body.appendChild(li);
         listNo++;
-        listitem.appendChild(listText);
-        listitem.className = "li-li";
-        document.getElementById("myList").appendChild(listitem);
     }
 
     let buttons = document.getElementById('button-list');
